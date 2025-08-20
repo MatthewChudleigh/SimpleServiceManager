@@ -9,6 +9,7 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices(services =>
     {
+        services.AddSingleton<IClientManager, ClientProcessManager>();
         services.AddHostedService<ServiceManager>();
     })
     .ConfigureLogging((hostingContext, logging) => logging.AddLog4Net("log4net.config"))
