@@ -14,34 +14,42 @@ public interface IClient
     bool Stop();
 }
 
-public class ServiceManager(ILogger<ServiceManager> logger, IConfiguration config, IClientManager clientManager) : BackgroundService
+public class ServiceManager(IHostApplicationLifetime lifetime, ILogger<ServiceManager> logger, IConfiguration config,
+    IClientManager clientManager) : BackgroundService
 {
-    public static readonly CancellationTokenSource MyToken = new();    
-    
     // Executes the service asynchronously, starting a process defined by the file path obtained from GetPath. 
     // The process is monitored by checking if it is running every second. 
     // If the process stops, the service is also stopped. 
     // Logs the start, running status, and stop of the service along with any errors encountered.
     protected override async Task ExecuteAsync(CancellationToken cancel)
     {
-        var restartAppAutomatically = bool.Parse(config.GetSection("Configs:RestartAppAutomatically").Value!);
-        var restartDelay = int.Parse(config.GetSection("Configs:RestartDelay").Value!);
+        if (!await CancellationHelper.TryContinueOnCancel(TimeSpan.FromMinutes(1), CancellationHelper.FromLifetime(lifetime, cancel)))
+        {
+            logger.LogInformation("Simple Service Manager failed to start");
+            return;
+        }
         
         if (!clientManager.TryInitialiseClient(out var client))
         {
             return;
         }
+        
+        using var cts = CancellationHelper.FromLifetimeStopping(lifetime, cancel);
+        
+        var restartAppAutomatically = bool.Parse(config.GetSection("Configs:RestartAppAutomatically").Value!);
+        var restartDelay = int.Parse(config.GetSection("Configs:RestartDelay").Value!);
+        
         var sleep = TimeSpan.FromSeconds(5);
         try
         {
             try
             {
                 logger.LogInformation("Simple Service Manager started running at: {time}", DateTimeOffset.Now);
-                while (!cancel.IsCancellationRequested)
+                while (!cts.IsCancellationRequested)
                 {
                     client.Start();
 
-                    await Monitor(client, sleep, cancel);
+                    await Monitor(client, sleep, cts.Token);
                     
                     if (restartAppAutomatically)
                     {
@@ -50,9 +58,9 @@ public class ServiceManager(ILogger<ServiceManager> logger, IConfiguration confi
                     }
                     else
                     {
-                        await MyToken.CancelAsync();
                         logger.LogInformation("Client process stopped");
-                        break; //"fileName" process stopped so service is also stopped
+                        lifetime.StopApplication();
+                        break;
                     }
                 }
             }
