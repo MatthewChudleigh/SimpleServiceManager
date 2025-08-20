@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleServiceManager", "SimpleServiceManager\SimpleServiceManager.csproj", "{DC6A5EB5-3439-43DD-8D01-76D04687D5A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleServiceManager", "src\SimpleServiceManager\SimpleServiceManager.csproj", "{DFC8A0A1-AB26-40DE-BF5C-B1C93E899056}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "TestAPI\TestAPI.csproj", "{CCA1171F-87EC-49E2-A0D9-27D1D4D1A568}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "test\TestAPI\TestAPI.csproj", "{FF1745CA-1819-4616-81C6-639681725124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{7E84B7CD-D293-45F0-943C-27226450B217}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "test\TestConsoleApp\TestConsoleApp.csproj", "{07339FF8-4C3D-450F-8D09-185EE99EBB34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +15,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DC6A5EB5-3439-43DD-8D01-76D04687D5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC6A5EB5-3439-43DD-8D01-76D04687D5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC6A5EB5-3439-43DD-8D01-76D04687D5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC6A5EB5-3439-43DD-8D01-76D04687D5A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCA1171F-87EC-49E2-A0D9-27D1D4D1A568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCA1171F-87EC-49E2-A0D9-27D1D4D1A568}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCA1171F-87EC-49E2-A0D9-27D1D4D1A568}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCA1171F-87EC-49E2-A0D9-27D1D4D1A568}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E84B7CD-D293-45F0-943C-27226450B217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E84B7CD-D293-45F0-943C-27226450B217}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E84B7CD-D293-45F0-943C-27226450B217}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E84B7CD-D293-45F0-943C-27226450B217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC8A0A1-AB26-40DE-BF5C-B1C93E899056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC8A0A1-AB26-40DE-BF5C-B1C93E899056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC8A0A1-AB26-40DE-BF5C-B1C93E899056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC8A0A1-AB26-40DE-BF5C-B1C93E899056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF1745CA-1819-4616-81C6-639681725124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1745CA-1819-4616-81C6-639681725124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1745CA-1819-4616-81C6-639681725124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1745CA-1819-4616-81C6-639681725124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07339FF8-4C3D-450F-8D09-185EE99EBB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07339FF8-4C3D-450F-8D09-185EE99EBB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07339FF8-4C3D-450F-8D09-185EE99EBB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07339FF8-4C3D-450F-8D09-185EE99EBB34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8870E886-CB95-4581-B6BE-CF0BF514A189}
+	EndGlobalSection
+	GlobalSection(RiderSharedRunConfigurations) = postSolution
+		File = .publish\Publish SimpleServiceManager to folder.run.xml
 	EndGlobalSection
 EndGlobal
