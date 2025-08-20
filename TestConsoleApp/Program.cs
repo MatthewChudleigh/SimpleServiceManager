@@ -2,13 +2,13 @@
 #if (DEBUG)
 System.Diagnostics.Debugger.Launch();
 #endif
-string logFilePath = "C:\\test\\log.txt";
+var logFilePath = "C:\\test\\log.txt";
 
 if (args.Length > 0)
 {
-    using (StreamWriter writer = new StreamWriter(logFilePath, true))
+    using (var writer = new StreamWriter(logFilePath, true))
     {
-        foreach (string parameter in args)
+        foreach (var parameter in args)
         {
             writer.WriteLine("Parameter: " + parameter);
         }
@@ -18,7 +18,7 @@ if (args.Length > 0)
 }
 else
 {
-    using (StreamWriter writer = new StreamWriter(logFilePath, true))
+    using (var writer = new StreamWriter(logFilePath, true))
     {
         writer.WriteLine("No parameters provided.");
     }

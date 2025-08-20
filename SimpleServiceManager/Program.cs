@@ -1,6 +1,6 @@
-using ServiceWrapper;
+using SimpleServiceManager;
 
-IHost host = Host.CreateDefaultBuilder(args)
+var host = Host.CreateDefaultBuilder(args)
     .UseWindowsService()
     .UseSystemd()
     .ConfigureAppConfiguration(conf =>
@@ -13,4 +13,5 @@ IHost host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureLogging((hostingContext, logging) => logging.AddLog4Net("log4net.config"))
     .Build();
-await host.RunAsync(Token.mytoken.Token);
+
+await host.RunAsync(ServiceManager.MyToken.Token);
