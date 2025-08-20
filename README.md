@@ -1,14 +1,16 @@
-# SSM: Simple Service Manager : Run any Windows application as a Service an NSSM alternative
+# SSM: Simple Service Manager
+
+> Run any Windows application as a Service, an NSSM alternative
 
 ## Features:
 
-* .NET 8 alternative of `NSSM` (the Non-Sucking Service Manager), `srvany` and other service helper programs.
+* .NET 9 alternative of `NSSM` (the Non-Sucking Service Manager), `srvany` and other service helper programs.
 * Automatically handles failure of the application running as a service.
 * Continuously monitors the Windows application status. 
 * If says it's running, it really is. 
 * Service automatically stops if the launched application exits.
 * Service Logs all errors in log files to help troubleshoot the issues.
-  
+
 ## Added new features in v1.1.0
 
 - **Additional parameters**   "AppParams".
@@ -40,7 +42,7 @@
 - Install it as a service from an **Elevated (Administrator) Command Prompt**:
 
 ```winbatch
-sc create "MyServiceName" start= auto binPath= "C:\Path\To\SimpleServiceManager.exe"
+sc create "MyServiceName" obj= LocalService start= auto binPath= "C:\Path\To\SimpleServiceManager.exe"
 sc description MyServiceName "My services description"
 sc start MyServiceName
 ```

@@ -1,18 +1,22 @@
 using SimpleServiceManager;
 
+Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
+var log4NetConfigPath = Path.Combine(Environment.CurrentDirectory, "log4net.config");
+
 var host = Host.CreateDefaultBuilder(args)
     .UseWindowsService()
     .UseSystemd()
     .ConfigureAppConfiguration(conf =>
     {
-        conf.SetBasePath(AppDomain.CurrentDomain.BaseDirectory);
+        conf.SetBasePath(Environment.CurrentDirectory);
     })
     .ConfigureServices(services =>
     {
         services.AddSingleton<IClientManager, ClientProcessManager>();
         services.AddHostedService<ServiceManager>();
     })
-    .ConfigureLogging((hostingContext, logging) => logging.AddLog4Net("log4net.config"))
+    .ConfigureLogging((hostingContext, logging) => logging.AddLog4Net(log4NetConfigPath))
     .Build();
 
 await host.RunAsync();

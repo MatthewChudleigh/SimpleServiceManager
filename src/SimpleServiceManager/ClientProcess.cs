@@ -10,7 +10,7 @@ public class ClientProcessManager(ILogger<ClientProcessManager> logger, IConfigu
         var path = config.GetSection("Configs:AppParams").Value;
         if (string.IsNullOrEmpty(path))
         {
-            logger.LogInformation("no AppParams : {time}", DateTimeOffset.Now);
+            logger.LogInformation("Configs:AppParams is empty");
         }
         
         return path;
@@ -19,9 +19,9 @@ public class ClientProcessManager(ILogger<ClientProcessManager> logger, IConfigu
     private string? GetPath()
     {
         var path = config.GetSection("Configs:AppPath").Value;
-        if (string.IsNullOrEmpty(path) || !File.Exists(path))
+        if (string.IsNullOrEmpty(path))
         {
-            logger.LogInformation("Simple Service Manager Exception Wrong APP path : {time}", DateTimeOffset.Now);
+            logger.LogError("Configs:AppPath is empty");
             return null;
         }
         return Path.GetFullPath(path);
@@ -32,7 +32,6 @@ public class ClientProcessManager(ILogger<ClientProcessManager> logger, IConfigu
         client = null;
         var filePath = GetPath();
         var appParams = GetAppParams();
-        //string fileName = GetFileName(filePath);
         var fileName = Path.GetFileNameWithoutExtension(filePath);
 
         // Add null check for filePath and fileName

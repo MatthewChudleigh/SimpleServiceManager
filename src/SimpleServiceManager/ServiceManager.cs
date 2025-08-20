@@ -26,11 +26,14 @@ public class ServiceManager(IHostApplicationLifetime lifetime, ILogger<ServiceMa
         if (!await CancellationHelper.TryContinueOnCancel(TimeSpan.FromMinutes(1), CancellationHelper.FromLifetime(lifetime, cancel)))
         {
             logger.LogInformation("Simple Service Manager failed to start");
+            lifetime.StopApplication();
             return;
         }
         
         if (!clientManager.TryInitialiseClient(out var client))
         {
+            logger.LogInformation("Simple Service Manager failed to initialise the client process");
+            lifetime.StopApplication();
             return;
         }
         
@@ -44,7 +47,9 @@ public class ServiceManager(IHostApplicationLifetime lifetime, ILogger<ServiceMa
         {
             try
             {
-                logger.LogInformation("Simple Service Manager started running at: {time}", DateTimeOffset.Now);
+                logger.LogInformation("Simple Service Manager started running at: {time} (restart app: {RestartApp}, restart delay: {RestartDelay}", 
+                    DateTimeOffset.Now, restartAppAutomatically, restartDelay);
+                
                 while (!cts.IsCancellationRequested)
                 {
                     client.Start();

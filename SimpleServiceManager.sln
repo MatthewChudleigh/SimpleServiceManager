@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "test\TestAPI\Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "test\TestConsoleApp\TestConsoleApp.csproj", "{07339FF8-4C3D-450F-8D09-185EE99EBB34}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution", ".solution", "{44CA728C-F451-451B-A039-5D8E5E923FF3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +42,5 @@ Global
 		SolutionGuid = {8870E886-CB95-4581-B6BE-CF0BF514A189}
 	EndGlobalSection
 	GlobalSection(RiderSharedRunConfigurations) = postSolution
-		File = .publish\Publish SimpleServiceManager to folder.run.xml
 	EndGlobalSection
 EndGlobal
